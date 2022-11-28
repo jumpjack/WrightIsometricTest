@@ -30,6 +30,10 @@
 Such definition means that each character "*" in the game map has these properties:
 - is a collectable object (objectType = "pickable"); 
 - has one single animation associated (in "animation" object); the initial animation ("animation" object) is named "idle";
+ The frame number refers to tiles position in tiles.png:
+
+![image](https://user-images.githubusercontent.com/1620953/204353682-c841c8f7-32cc-47a8-aeca-52be81bec8a4.png)
+
 - its shape is defined in resource image called "tiles", a single image containing all tiles data; this tile is located at X,Y=128,32 in the image, and its size is W,H = 32, 32;
 - image associated to "tiles" is defined in section "resources" of tapes.json, and is named "tiles.png"; the root folder is the game folder inside *tapes* folder, hence the full path, considering the image above, is WrightEngine\tapes\isocat\tiles.png:
 ```
@@ -44,7 +48,61 @@ This is the image, with the specified tile and animation frames highlighted:
 
 ![image](https://user-images.githubusercontent.com/1620953/204352173-213bad94-b50e-4bf4-9d53-442afd8dd009.png)
 
+
 - has collision detection enabled (hitbox) **(data of hitbox are currently unknown (ToDo))**
+
+## Player definition
+
+Player is defined in "stencils", with "objectType" = "player" 
+
+## Collisions
+
+Collisions are defined in "stencils", in the object "hitbox"
+
+## Enemies
+
+Enemis are defined in "stencils", with "objectType" = "kill"
+
+## Obstacle (walls and similar)
+
+Defined in "stencils", with "objectType" = "obstacle"
+
+Examples:
+```
+   "#":{ "set":{ "_":[ "stencil", "modelTile" ] }, "objectType":"obstacle" },
+    "%":{ "set":{ "_":[ "stencil", "modelTile" ] }, "frame":8, "objectType":"obstacle" },
+    "-":{ "set":{ "_":[ "stencil", "modelTile" ] }, "frame":1, "objectType":"obstacle" },
+    "7":{ "set":{ "_":[ "stencil", "modelTile" ] }, "frame":7, "objectType":"obstacle" },
+```
+![image](https://user-images.githubusercontent.com/1620953/204353916-e1446967-72b4-4346-b6f4-f85a0713012c.png)
+
+## Example room
+
+Definition of layer 1 (layer 0 is floor, all tiles are the same):
+```
+.   .   .   .   #   
+  .   .   .   #   #   
+.   .   .   #   #   #   
+  .   .   #   .   .   #   
+.   .   #   .   .   .   #   
+  .   #   .   .   .   .   #   
+.   #   .   .   .   .   .   #   
+  #   .   #   .   .   *   .   #   
+.   .   #   #   .   *   *   .   
+  .   .   #   .   .   *   .   
+.   .   .   .   *   .   .   
+  .   .   .   *   *   .   
+.   .   .   .   *   .   
+  .   .   .   .   .   
+.   .   .   .   . 
+```
+
+Visual:
+
+![image](https://user-images.githubusercontent.com/1620953/204354645-daac0911-8c05-486d-96b9-eeb90a626b68.png)
+
+Note: "player" (stencil "!") is not visible in layer 1 because it's over a tile; it's defined in layer 2.
+
 ----------------
 # Originale readme
 
