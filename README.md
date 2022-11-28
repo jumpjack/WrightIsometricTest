@@ -103,7 +103,7 @@ Visual:
 
 Note: "player" (stencil "!") is not visible in layer 1 because it's over a tile; it's defined in layer 2.
 
-Note 2: it's available a tilemap [converter](https://jumpjack.github.io/WrightIsometricTest/tools/) from Tiled format to Wright format for tilemaps (click on "tiled tool" tab).
+Note 2: it's available a tilemap [converter](https://jumpjack.github.io/WrightIsometricTest/tools/) from Tiled format to Wright format for tilemaps (click on "tiled tool" tab). You must specify the name of a file in folder https://github.com/jumpjack/WrightIsometricTest/tree/master/assets/tilemaps .
 
 
 ----------------
