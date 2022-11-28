@@ -1,3 +1,53 @@
+# Notes
+
+- A game can be distributed as a single folder containing all resources,  an html page which loads the game, and file wright.js file which contain the whole engine, without dependencies.
+- Folder structure:
+
+![image](https://user-images.githubusercontent.com/1620953/204349899-c5978e7b-1a3e-4c06-9a7e-d7426a260932.png)
+
+- File tape.js contains the whole game: maps and logic; both are stored as JSON data.
+
+## Structure of a "stencil":
+
+```
+    "*":{
+      "type":"star",
+      "image":"tiles", "tileX":128, "tileY":32, "width":32, "height":32,
+      "hitbox":{ "width":1, "height":1, "x":16, "y":8 },
+      "animations":{ "idle":{ "frames":[ 0, 1, 2, 1 ], "speed":3, "loopTo":0 } },
+      "animation":"idle",
+      "objectType":"pickable",
+      "zSubindex":0,
+      "states":{
+        "actions":{
+          "name":"pick",
+          "execute":[ { "sum":{ "_":[ "variable", "completeCount", "*", 10 ] }, "to":{ "_":[ "variable", "score" ] } }, { "_":[ "stencil", "removeWithSpark" ] } ]
+        }
+      }
+    },
+```
+
+Such definition means that each character "*" in the game map has these properties:
+- is a collectable object (objectType = "pickable"); 
+- has one single animation associated (in "animation" object); the initial animation ("animation" object) is named "idle";
+- its shape is defined in resource image called "tiles", a single image containing all tiles data; this tile is located at X,Y=128,32 in the image, and its size is W,H = 32, 32;
+- image associated to "tiles" is defined in section "resources" of tapes.json, and is named "tiles.png"; the root folder is the game folder inside *tapes* folder, hence the full path, considering the image above, is WrightEngine\tapes\isocat\tiles.png:
+```
+  "resources":{
+    "spectrum":"spectrum.font",
+    "tiles":"tiles.png",
+    "title":"title.png"
+  },
+```
+
+This is the image, with the specified tile and animation frames highlighted:
+
+![image](https://user-images.githubusercontent.com/1620953/204352173-213bad94-b50e-4bf4-9d53-442afd8dd009.png)
+
+- has collision detection enabled (hitbox) **(data of hitbox are currently unknown (ToDo))**
+----------------
+# Originale readme
+
 # Wright! Magazine
 
 I'm putting here the sources of my Wright! Magazine & Game engine as backup and reference for curious people. You can play with it here: http://www.kesiev.com/wright
