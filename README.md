@@ -113,7 +113,7 @@ Collisions are defined in "stencils", in the object "hitbox"
 
 Enemis are defined in "stencils", with "objectType" = "kill"
 
-## Obstacle (walls and similar)
+## Obstacles (walls and similar)
 
 Defined in "stencils", with "objectType" = "obstacle"
 
@@ -125,6 +125,14 @@ Examples:
     "7":{ "set":{ "_":[ "stencil", "modelTile" ] }, "frame":7, "objectType":"obstacle" },
 ```
 ![image](https://user-images.githubusercontent.com/1620953/204353916-e1446967-72b4-4346-b6f4-f85a0713012c.png)
+
+If you need to reuse same tile flipped horizontally, define a new stencil adding "flipX":
+
+```
+   "F":{ "set":{ "_":[ "stencil", "modelTile" ] }, "objectType":"obstacle" , "flipX":1 },
+```
+
+This tile "F" will appear horizontally flipped w.r.t. tile "#".
 
 ## Example room
 
