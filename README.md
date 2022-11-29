@@ -55,6 +55,56 @@ This is the image, with the specified tile and animation frames highlighted:
 
 Player is defined in "stencils", with "objectType" = "player" 
 
+```
+    "!":{
+      "type":[ "player", "warnonwin", "warnonrun" ],
+      "set":{ "_":[ "stencil", "modelMovingObject" ] },
+      "tileY":72,
+      "visible":0,
+      "killType":"kill",
+      "objectType":"player",
+      "obstacleType":"obstacle",
+      "pickableType":"pickable",
+      "states":[
+      ....
+```      
+
+In "set" it's defined where to find animation frames: in stencil named "modelMovingObject", but here it's defined the start Y coordinate for frames, "tileY"
+
+modelMovingObject definition:
+
+``` 
+    "modelMovingObject":{
+      "image":"tiles", "width":32, "height":32,
+      "hitbox":{ "width":16, "height":6, "x":8, "y":5 },
+      "animations":{
+        "down":{   "frame":0 },
+        "fallingdown":{ "frame":4 },
+        "fallingup":{ "frame":6 },
+        "jumpingdown":{ "frame":0 },
+        "jumpingup":{ "frame":5 },
+        "movingdown":{ "frames":2, "speed":2, "loopTo":0 },
+        "movingup":{ "frame":2, "frames":2, "speed":2, "loopTo":0 },
+        "up":{ "frame":2 }
+      },
+      "sided":"down",
+      "sumx":0,
+      "sumy":0,
+      "zSubindex":0
+    },
+  ``` 
+  
+  "image" specifies the resource to be used as a base image to extract frames; such resource is defined in "resources" section (tiles.png):
+  
+    ``` 
+    "resources":{
+    "spectrum":"spectrum.font",
+    "tiles":"tiles.png",
+    "title":"title.png"
+  },
+    ```   
+All of these means that player animation frames are stored in image tiles.png, starting at coordinates X,Y = 0,72, and are sized 32x32 pixel; each movement has a different animation; for example, "movingup" has 2 frames, starts at frame = 2, it's 2 frames long and a speed = 2. (loopTo = ???)
+
 ## Collisions
 
 Collisions are defined in "stencils", in the object "hitbox"
